@@ -29,10 +29,7 @@ import {
 export { constants }
 
 interface FileHandleEvents extends EventMap {
-  /**
-   * Close a file descriptor.
-   * @param fd - The file descriptor to close, as returned by `fs.open()`.
-   */
+  /** Emitted once the file handle has closed. */
   close: []
 }
 
@@ -40,6 +37,7 @@ interface FileHandle extends EventEmitter<FileHandleEvents>, AsyncDisposable {
   /** The underlying file descriptor. */
   readonly fd: number
 
+  /** Close the underlying file descriptor. */
   close(): Promise<void>
 
   /**

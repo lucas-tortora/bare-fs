@@ -263,10 +263,7 @@ export type WatcherEventType = 'rename' | 'change'
 export interface WatcherEvents<T extends string | Buffer = string | Buffer> extends EventMap {
   error: [err: Error]
   change: [eventType: WatcherEventType, filename: T]
-  /**
-   * Close a file descriptor.
-   * @param fd - The file descriptor to close, as returned by `fs.open()`.
-   */
+  /** Emitted once the watcher has stopped watching. */
   close: []
 }
 
@@ -370,6 +367,10 @@ export function chown(filepath: Path, uid: number, gid: number, cb: Callback): v
 
 export function chownSync(filepath: Path, uid: number, gid: number): void
 
+/**
+ * Close a file descriptor.
+ * @param fd - The file descriptor to close, as returned by `fs.open()`.
+ */
 export function close(fd: number): Promise<void>
 
 export function close(fd: number, cb: Callback): void
